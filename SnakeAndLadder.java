@@ -20,11 +20,11 @@ public class SnakeAndLadder {
 			 * Converting it to nearest possible integer number using Math.floor()
 			 */
 			int diceValue = (int) Math.floor(Math.random() * 6) + 1;
-			System.out.println("Dice value is :" + diceValue);
+			System.out.println("Dice value is: " + diceValue);
 
 			// Using random to check for option of No Play, Snake or Ladder
 			int option = (int) Math.floor(Math.random() * 10) % 3;
-			System.out.println("Option is :" + option);
+			System.out.println("Option is: " + option);
 
 			// Repeating till the Player reaches the winning position
 			switch (option) {
@@ -50,9 +50,9 @@ public class SnakeAndLadder {
 
 				break;
 			}
-			System.out.println("Reached:" + reach);
+			System.out.println("Reached: " + reach);
 		}
-		System.out.println("Win:" + reach);
+		System.out.println("Win: " + reach);
 
 	}
 
