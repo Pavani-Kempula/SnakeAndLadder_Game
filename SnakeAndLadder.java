@@ -10,50 +10,63 @@ public class SnakeAndLadder {
 	public static final int WINNING_POSITION = 100;
 	
 	public static void main(String[] args) {
-		int position = 0;
-		int reach = 0;
-		while (reach < WINNING_POSITION) {
-			reach++;
-			/*
-			 * Using random to get Dice number
-			 * Math.random() function generating random numbers from range 1 to 6
-			 * Converting it to nearest possible integer number using Math.floor()
-			 */
-			int diceValue = (int) Math.floor(Math.random() * 6) + 1;
-			System.out.println("Dice value is: " + diceValue);
+		
+		// Displaying Welcome Message
+				System.out.println("Welcome To Snake And Ladder Game");
 
-			// Using random to check for option of No Play, Snake or Ladder
-			int option = (int) Math.floor(Math.random() * 10) % 3;
-			System.out.println("Option is: " + option);
+				int position = 0;
+				int reach = 0;
+				int roll = 0;
+				int start = 0;
 
-			// Repeating till the Player reaches the winning position
-			switch (option) {
-			case NO_PLAY:
-				position += 0;
-				break;
-			case LADDER:
-				if ((position + diceValue) < 100) {
-					position += diceValue;
-					reach = position;
-				} else
-					position += diceValue;
-				reach = position;
+				while (reach < WINNING_POSITION) {
+					reach++;
+					/*
+					 * Using random to get Dice number
+					 * Math.random() function generating random numbers from range 1 to 6
+					 * Converting it to nearest possible integer number using Math.floor()
+					 */
+					int diceValue = (int) Math.floor(Math.random() * 6) + 1;
+					System.out.println("Dice value is :" + diceValue);
+					
+					// Using random to check for option of No Play, Snake or Ladder
+					int option = (int) Math.floor(Math.random() * 10) % 3;
+					System.out.println("Option is :" + option);
+					
+					//Repeating till the Player reaches the Exact Winning Position
+					switch (option) {
+					case NO_PLAY:
+						roll = 0;
+						break;
+					case LADDER:
+						roll = +diceValue;
+						break;
+					case SNAKE:
+						roll = -diceValue;
+						break;
+					}
 
-				break;
-			case SNAKE:
-				if (position > 0) {
-					position -= diceValue;
-					reach = position;
-				} else
-					position = 0;
-				reach = position;
-
-				break;
-			}
-			System.out.println("Reached: " + reach);
-		}
-		System.out.println("Win: " + reach);
-
+					position = (position + roll);
+					if ((position < start) && (option == 0)) {
+						System.out.println("Current Position: " + start);
+						reach = start;
+						System.out.println("Reached: " + reach);
+					} else if ((position > WINNING_POSITION) && (option == 1)) {
+						System.out.println("Current Position: " + position);
+						reach = WINNING_POSITION;
+						System.out.println("Reached: " + reach);
+						break;
+					} else if (position < 0) {
+						System.out.println("Current Position: " + start);
+						reach = start;
+						System.out.println("Reached: " + reach);
+					} else {
+						System.out.println("Current Position: " + position);
+						reach = position;
+						System.out.println("Reached: " + reach);
+					}
+				}
+				System.out.println("Win:" + reach);
 	}
 
 }
